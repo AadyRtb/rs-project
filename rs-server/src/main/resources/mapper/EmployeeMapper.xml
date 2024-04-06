@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.rs.mapper.FoodMapper">
+
+    <select id="pageQuery" resultType="com.rs.entity.Food">
+        select * from food
+        <where>
+        <if test="name !=null and name !=''">
+            and name like concat('%',#{name},'%')
+        </if>
+        <if test="brand !=null and brand !=''">
+            and brand like concat('%',#{brand},'%')
+        </if>
+        </where>
+        order by sell desc
+    </select>
+
+    <update id="update" parameterType="food">
+        update  food
+        <set>
+            <if test="name !=null">name=#{name},</if>
+            <if test="brand !=null">brand=#{brand},</if>
+            <if test="price !=null">price=#{price},</if>
+            <if test="sell !=null">sell=#{sell},</if>
+            <if test="status !=null">status=#{status},</if>
+        </set>
+            where id=#{id}
+    </update>
+</mapper>
