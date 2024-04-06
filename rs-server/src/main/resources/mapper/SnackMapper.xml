@@ -17,14 +17,14 @@
     </select>
 
     <update id="update" parameterType="snack">
-        update  food
+        update  snack
         <set>
             <if test="name !=null">name=#{name},</if>
             <if test="brand !=null">brand=#{brand},</if>
             <if test="price !=null">price=#{price},</if>
             <if test="sell !=null">sell=#{sell},</if>
             <if test="status !=null">status=#{status},</if>
-            <if test="sause !=null">sause=#{sause}</if>
+            <if test="sause !=null">sause=#{sause},</if>
         </set>
         where id=#{id}
     </update>
