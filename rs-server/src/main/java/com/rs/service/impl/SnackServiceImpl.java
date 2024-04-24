@@ -46,6 +46,11 @@ public class SnackServiceImpl implements SnackService {
         return snack;
     }
 
+    public Snack getByName(String name) {
+        Snack snack = snackMapper.getByName(name);
+        return snack;
+    }
+
     @Override
     public void delete(Long id) {
         snackMapper.delete(id);

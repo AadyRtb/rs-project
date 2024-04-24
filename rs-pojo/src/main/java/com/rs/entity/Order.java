@@ -7,12 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class Order implements Serializable{
     static private Order order;
-    private List<Good> goods=null;
+    private List<Good> goods;
+
+    private double price;
     @JsonFormat(pattern = "yyyy-MM-dd HH-mm-ss")
     private LocalDateTime orderTime;
 
@@ -32,8 +35,11 @@ public class Order implements Serializable{
         this.orderTime = orderTime;
     }
 
-    public Order getOrder(){
-        if(order==null)  order=new Order();
+    public static Order getOrder(){
+        if(order==null) {
+            order=new Order();
+        order.setGoods(new ArrayList<Good>());
+        }
 
         return order;
     }
@@ -45,5 +51,10 @@ public class Order implements Serializable{
 
     public void removeGood(Good good){
         goods.remove(good);
+    }
+
+    public double getPrice(){
+        //TODO 计算总价
+        return goods.stream().mapToDouble(Good::getPrice).sum();
     }
 }

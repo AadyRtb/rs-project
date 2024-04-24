@@ -18,6 +18,8 @@ public interface SnackService {
 
     Snack getById(Long id);
 
+    Snack getByName(String name);
+
     void delete(Long id);
 
     void update(SnackDTO snackDTO);

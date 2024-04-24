@@ -19,5 +19,6 @@ public class Good implements Serializable{
 
     protected Double  price;
     protected Integer sell;
+    protected String brand;
     protected Integer status;
 }

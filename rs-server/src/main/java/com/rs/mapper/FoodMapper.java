@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
+import java.util.List;
+
 @Mapper
 public interface FoodMapper {
 
@@ -16,18 +18,23 @@ public interface FoodMapper {
      * @param foodPageQueryDTO
      * @return
      */
-    Page<Food> pageQuery(FoodPageQueryDTO foodPageQueryDTO);
+    List<Food> pageQuery(FoodPageQueryDTO foodPageQueryDTO);
 
-    @Insert("insert into food (id,name,brand,price,sell)"+
+    @Insert("insert into food (id,name,brand,price)"+
             "value" +
-            "(#{id},#{name},#{brand},#{price},#{sell})")
+            "(#{id},#{name},#{brand},#{price})")
     void insert(Food food);
 
     @Select("select * from food where id=#{id}")
     Food getById(Long id);
 
+    @Select("select * from food where name=#{name}")
+    Food getByName(String name);
     void update(Food food);
 
     @Delete("delete from food where id =#{id}")
     void delete(Long id);
+
+    @Select("select name from food where brand=#{brand}")
+    List<String> selectNameByBrand(String brand);
 }

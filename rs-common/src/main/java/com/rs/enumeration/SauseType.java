@@ -5,4 +5,5 @@ public enum SauseType {
     番茄酱,
     甜辣酱,
     辣椒粉,
+    沙拉酱
 }

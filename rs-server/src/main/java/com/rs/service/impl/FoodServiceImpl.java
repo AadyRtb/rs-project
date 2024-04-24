@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.DigestUtils;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -33,8 +34,10 @@ public class FoodServiceImpl implements FoodService {
 
     public PageResult pageQuery(FoodPageQueryDTO foodPageQueryDTO){
         PageHelper.startPage(foodPageQueryDTO.getPage(),foodPageQueryDTO.getPageSize());
-
-        Page<Food> page= foodMapper.pageQuery(foodPageQueryDTO);
+       List<Food> foodList=foodMapper.pageQuery(foodPageQueryDTO);
+       List<Food> fl=new ArrayList<>();
+       fl=foodList;
+        Page<Food> page= (Page)fl;
         long total=page.getTotal();
         List<Food> records=page.getResult();
         System.out.println(new PageResult(total,records));
@@ -43,6 +46,11 @@ public class FoodServiceImpl implements FoodService {
 
     public Food getById(Long id) {
         Food food = foodMapper.getById(id);
+        return food;
+    }
+
+    public Food getByName(String name) {
+        Food food = foodMapper.getByName(name);
         return food;
     }
 

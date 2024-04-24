@@ -6,10 +6,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
-public class Food extends Good{
-    protected String brand;
 
+public class Food extends Good{
+
+public Food(){
+    super();
+}
 
 }

@@ -17,6 +17,7 @@ public interface FoodService {
     void save(FoodDTO foodDTO);
 
     Food getById(Long id);
+    Food getByName(String name);
 
     void delete(Long id);
 
