@@ -7,9 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="rs-server" />
-        <module name="rs-pojo" />
-        <module name="rs-common" />
+        <module name="tp-server" />
+        <module name="tp-common" />
+        <module name="tp-pojo" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -20,9 +20,9 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="rs-common" options="-parameters" />
-      <module name="rs-pojo" options="-parameters" />
-      <module name="rs-server" options="-parameters" />
+      <module name="tp-common" options="-parameters" />
+      <module name="tp-pojo" options="-parameters" />
+      <module name="tp-server" options="-parameters" />
     </option>
   </component>
 </project>

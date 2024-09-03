@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.memo.mapper.MenuMapper">
+
+
+    <select id="pageQuery" resultType="com.tp.dto.rs.MenuDTO">
+        select menu.*,food.name foodName ,snack.name snackName,drink.name drinkName
+        from menu,food,snack,drink
+        <where>
+            menu.id_food=food.id
+            and menu.id_snack=snack.id
+            and menu.id_drink=drink.id
+            <if test="name !=null and name !=''">
+                and menu.name like concat('%',#{name},'%')
+            </if>
+            <if test="brand !=null and brand !=''">
+                and menu.brand like concat('%',#{brand},'%')
+            </if>
+
+        </where>
+        order by menu.sell desc
+    </select>
+    <select id="getById" resultType="com.tp.dto.rs.MenuDTO" parameterType="integer">
+        select menu.*,food.name foodName ,snack.name snackName,drink.name drinkName
+        from menu,food,snack,drink
+        <where>
+            menu.id_food=food.id
+            and menu.id_snack=snack.id
+            and menu.id_drink=drink.id
+            and menu.id=#{id}
+
+        </where>
+    </select>
+
+    <update id="update" parameterType="menu">
+        update menu
+        <set>
+            <if test="name !=null">name=#{name},</if>
+            <if test="brand !=null">brand=#{brand},</if>
+            <if test="price !=null">price=#{price},</if>
+            <if test="sell !=null">sell=#{sell},</if>
+            <if test="status !=null">status=#{status},</if>
+            <if test="food !=null">id_food=#{menu.food.id},</if>
+            <if test="snack !=null">id_snack=#{menu.snack.id},</if>
+            <if test="drink !=null">id_drink=#{menu.drink.id},</if>
+        </set>
+        where id=#{menu.id}
+    </update>
+
+    <insert id="insert" parameterType="menu">
+        insert into menu (id, name, brand, price, id_food, id_snack, id_drink, sell)
+        values (
+                #{id},
+                #{name},
+                #{brand},
+                #{price},
+                #{food.id},
+                #{snack.id},
+                #{drink.id},
+                #{sell}
+               )
+    </insert>
+</mapper>
