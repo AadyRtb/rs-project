@@ -16,6 +16,6 @@ public class DrinkDTO {
     private  Integer temperature;
 
     //0代表无糖，1代表少，2代表正常糖
-    private Integer sugar;
+//    private Integer sugar;
 }
 
